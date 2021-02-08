@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&family=Caveat&family=Sriracha&display=swap');
+
+body {
+	background-image: url('../img/bg.jpg');
+  background-size: cover;
+}
+
+.container{
+  background-color: rgba(255, 255, 255, 0.5);
+  margin-top: 10%;
+  width: 60%;
+  margin-bottom: -8px;
+}
+
+.titlebg{
+  background-color: rgba(200, 170, 159, 0.8);
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+#title{
+  display: none;
+  text-align: center;
+  color: #7f4039;
+  font-family: 'Great Vibes', cursive;
+  font-size: 60px;
+  padding-top: 20px;
+  width: 740px;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-animation: typing 5s steps(50, end);
+  animation: typing 5s steps(50, end);
+}
+
+@keyframes typing{
+  from{width: 0;}
+}
+
+@-webkit-keyframes typing{
+  from{width: 0;}
+}
+
+.subtitlebg{
+  margin-top: 0;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.subtitle{
+  text-align: center;
+  padding: 30px 0;
+  font-family: 'Caveat', cursive;
+  font-size: 50px;
+  color: #49402e;
+  letter-spacing: 10px;
+  display: none;
+}
+
+.subtitle span{
+  color: #7f4039;
+}
+
+.btn-signin{
+  border: 2px solid #6f3c27;
+  margin-left: 45%;
+  margin-bottom: 30px !important;
+  font-family: 'Sriracha', cursive;
+  color: #49402e;
+  display: none;
+}
+
+.btn-signin:hover{
+  color: white;
+  background-color: #6f3c27;
+}
+
+
+
+
+
+@media (max-width: 1000px){
+  body{
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  #title{
+    font-size: 40px;
+    padding-top: 10px;
+  }
+}
+
+
+
+
+@media (max-width: 670px){
+  body{
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

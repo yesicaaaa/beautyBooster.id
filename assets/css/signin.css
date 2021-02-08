@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Montserrat+Alternates&display=swap');
+
+body {
+	background-image: url('../img/bgLogin.jpg');
+	background-size: cover;
+	font-family: 'Montserrat Alternates', sans-serif;
+}
+
+.container {
+	background-color: rgba(255, 255, 255, 0.4);
+	margin-top: 9%;
+	width: 28%;
+}
+
+h1 {
+	text-align: center;
+	padding: 20px 0 20px 0;
+	color: #4f4532;
+}
+
+form {
+	width: 75%;
+	margin-left: 12%;
+}
+
+#basic-addon1 {
+	background-color: #c3a08c;
+}
+
+.last {
+	padding-bottom: 20px;
+}
+
+.btn {
+	border: 2px solid #675a47;
+	margin: 6px 88px;
+	color: #675a47;
+	width: 32%;
+
+
+}
+
+.btn:hover {
+	background-color: #675a47;
+	color: #c6b0ac;
+}
+
+p {
+	text-align: center;
+	color: #4f4532;
+	padding: 5px 0 20px 0;
+}
+
+span a {
+	color: #c1967e;
+}
+
+a:hover {
+	text-decoration: none;
+	color: #544b3a;
+}
