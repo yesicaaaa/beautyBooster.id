@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Marcellus+SC&family=Montserrat+Alternates&family=Courgette&display=swap');
 
 body {
-	background-image: url('../img/bgLogin.jpg');
+	background-image: url('../img/bgRegister.jpg');
 	background-size: cover;
 	font-family: 'Courgette', cursive;
 }
 
 .container {
-	background-color: rgba(255, 255, 255, 0.4);
-	margin-top: 9%;
-	width: 28%;
-	border-radius: 5px;
+	background-color: rgba(255, 255, 255, 0.5);
+	margin-top: 6%;
+  width: 40%;
+  border-radius: 5px;
 }
 
 h1 {
@@ -32,13 +32,11 @@ form {
 	padding-bottom: 20px;
 }
 
+
 .btn {
 	border: 2px solid #675a47;
-	margin: 6px 88px;
+	margin: 5px 148px;
 	color: #675a47;
-	width: 32%;
-
-
 }
 
 .btn:hover {
@@ -46,10 +44,10 @@ form {
 	color: #c6b0ac;
 }
 
-p {
+.p {
 	text-align: center;
 	color: #4f4532;
-	padding: 5px 0 20px 0;
+	padding: 5px 0 25px 0;
 }
 
 span a {

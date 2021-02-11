@@ -19,12 +19,12 @@
         </div>
         <input type="password" class="form-control" placeholder="Password" name="password"><br>
       </div>
-      <?= form_error('password1', ' <small class="text-danger pl-3">', '</small>'); ?>
+      <?= form_error('password', ' <small class="text-danger pl-3">', '</small>'); ?>
     </div>
     <button type="submit" class="btn">Sign in</button>
   </form>
   <!-- <a id="pass" href="<?= base_url(); ?>">Forgot password?</a> -->
-  <p>Don't have an account yet? <br><span><a href="<?= base_url(); ?>register">Register </a></span>here!</p>
+  <p>Don't have an account yet? <br><span><a href="<?= base_url(); ?>signup">Sign up </a></span>here!</p>
 
 </div>
 
