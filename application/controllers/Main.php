@@ -18,12 +18,14 @@ class Main extends CI_Controller {
   public function home()
   {
     $data = [
+      'menu'    => $this->db->get('menu_categories'),
       'title'   => 'Home | beautyBooster.id',
       'css'     => 'assets/css/home.css',
       'js'      => 'assets/js/home.js'
     ];
 
     $this->load->view('templates/header', $data);
+    $this->load->view('templates/side-navbar', $data);
     $this->load->view('main/home');
     $this->load->view('templates/footer', $data);
   }

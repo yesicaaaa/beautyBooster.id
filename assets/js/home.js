@@ -3,7 +3,12 @@ $(document).ready(function() {
   //   $('input').toggleClass('form-control');
   // });
 
-  $('#dropdownSkincare').click(function(){
-    $('.show').css('margin-bottom', '324px');
-  });
+  $('.dropdown').hover(
+    function(){
+      $(this).css({'margin-bottom': '80%'});
+    },
+    function(){
+      $(this).css('margin-bottom', '5px');
+    }
+  );
 });
