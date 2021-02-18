@@ -18,7 +18,7 @@ class Main extends CI_Controller {
   public function home()
   {
     $data = [
-      'menu'    => $this->db->get('menu_categories'),
+      'user'    => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
       'title'   => 'Home | beautyBooster.id',
       'css'     => 'assets/css/home.css',
       'js'      => 'assets/js/home.js'
@@ -27,6 +27,22 @@ class Main extends CI_Controller {
     $this->load->view('templates/header', $data);
     $this->load->view('templates/side-navbar', $data);
     $this->load->view('main/home');
+    $this->load->view('templates/footer', $data);
+  }
+
+  public function products()
+  {
+    $data = [
+      'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+      'title'     => 'Body Care | beautyBooster.id',
+      'mainTitle' => 'Body Care',
+      'css'       => 'assets/css/products.css',
+      'js'        => 'assets/js/products.js'
+    ];
+
+    $this->load->view('templates/header', $data);
+    $this->load->view('templates/side-navbar', $data);
+    $this->load->view('main/products');
     $this->load->view('templates/footer', $data);
   }
 }

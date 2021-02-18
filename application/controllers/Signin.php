@@ -35,7 +35,7 @@ class Signin extends CI_Controller {
           ];
           $this->session->set_userdata($data);
           if($user['role_id'] == 1){
-            redirect('admin');
+            redirect('master_menu');
           } else {
             redirect('main/home');
           }

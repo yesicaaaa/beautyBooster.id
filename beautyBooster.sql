@@ -22,7 +22,7 @@ CREATE TABLE `user_access_menu` (
   `menu_id` INT(11)
 );
 
-CREATE TABLE `user_menu` (
+CREATE TABLE `menu_categories` (
   `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
   `menu` VARCHAR(128)
 );
@@ -32,11 +32,24 @@ CREATE TABLE `user_role` (
   `role` VARCHAR(128)
 );
 
-CREATE TABLE `user_sub_menu` (
+CREATE TABLE `menu_sub_categories` (
   `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
   `menu_id` INT(11),
   `title` VARCHAR(128),
   `url` VARCHAR(128),
+  `is_active` int(1)
+);
+
+CREATE TABLE `tb_m_menu` (
+  `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
+  `menu` VARCHAR(128)
+);
+
+CREATE TABLE `tb_m_sub_menu` (
+  `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
+  `menu_id` INT(11),
+  `title` VARCHAR(128),
   `icon` VARCHAR(128),
+  `url` VARCHAR(128),
   `is_active` int(1)
 );

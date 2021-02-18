@@ -8,7 +8,7 @@
       <a href=""><li class="cart fa fa-opencart"></li></a>
     </form>
   </div>
-  <img src="<?= base_url(); ?>assets/img/default.jpg" class="img-circle">
+  <img src="<?= base_url(); ?>assets/img/<?= $user['image']; ?>" class="img-circle">
   <div class="fa fa-caret-down "></div>
 </nav>
 <!-- end navbar -->
@@ -20,7 +20,7 @@
   <!-- query menu -->
   <?php 
     $queryMenu = "SELECT * FROM `menu_categories`
-                  ORDER BY `id` ASC";
+                  ORDER BY `menu` ASC";
     $menu = $this->db->query($queryMenu)->result_array();
   ?>
 
@@ -33,15 +33,15 @@
       $menuId = $m['id'];
       $querySubMenu = "SELECT * FROM `menu_sub_categories`
                       WHERE `menu_sub_categories`.`menu_id` = $menuId
-                      AND `is_active` = 1";
+                      AND `is_active` = 1
+                      ORDER BY  `title` ASC";
       $subMenu = $this->db->query($querySubMenu)->result_array();
     ?>
-
-    <?php foreach($subMenu as $sm) : ?>
       <div class="dropdown-content">
-        <a href="<?= $sm['url'] ?>"><?= $sm['title'] ?></a>
+        <?php foreach($subMenu as $sm) : ?>
+          <a href="<?= $sm['url'] ?>"><?= $sm['title'] ?></a>
+        <?php endforeach; ?>
       </div>
-    <?php endforeach; ?>
     </div>
   <?php endforeach; ?>
 </div>
