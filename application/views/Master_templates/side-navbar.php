@@ -2,7 +2,17 @@
 <nav class="navbar bg-nav">
   <a class="navbar-brand">beautyBooster.id</a>
   <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="img-circle">
-  <div class="fa fa-caret-down "></div>
+  <!-- <div class="fa fa-caret-down dropdown"></div> -->
+  <div class="dropdown">
+  <button class="fa fa-caret-down dropdown-user" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <div class=""></div>
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item fa fa-fw fa-user" href="<?= base_url(); ?>master_user"><span class="item-desc"> My Profile</span></a>
+    <div class="user-divider"></div>
+    <a class="dropdown-item fa fa-fw fa-caret-right" href="<?= base_url(); ?>master_user/signout"><span class="item-desc">Sign Out</span></a>
+  </div>
+</div>
 </nav>
 <!-- end navbar -->
 <!-- side nav -->

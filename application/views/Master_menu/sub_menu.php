@@ -2,7 +2,10 @@
   <h1>SubMenu Management</h1>
   <div class="row">
     <div style="width: 79%;">
-      <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+      <?= form_error('menu_id', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+      <?= form_error('title', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+      <?= form_error('icon', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+      <?= form_error('url', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= $this->session->flashdata('message'); ?>
       <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newSubMenuModal">Add New SubMenu</a></b>
       <table class="table">

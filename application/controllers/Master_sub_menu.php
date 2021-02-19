@@ -8,7 +8,8 @@ class Master_sub_menu extends CI_Controller{
     $this->load->model('Master_sub_menu_model', 'sm');
   }
 
-  public function index(){
+  public function index()
+  {
     $data = [
       'user'     => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
       'menu'     => $this->db->get('tb_m_menu')->result_array(),
@@ -43,23 +44,48 @@ class Master_sub_menu extends CI_Controller{
     }
   }
 
-  public function deleteSubMenu($id){
+  public function deleteSubMenu($id)
+  {
     $this->sm->deleteSubMenu($id);
     $this->session->set_flashdata('message', '<div class="alert alert-success" 
         role="alert">SubMenu Deleted Successfully!</div>');
     redirect('master_sub_menu');
   }
 
-  public function getSubMenuRow(){
+  public function getSubMenuRow()
+  {
     $id = $this->input->post('id');
     $row = $this->db->where('id', $id)->get('tb_m_sub_menu')->row_array();
     echo json_encode($row);
   }
 
-  public function editSubMenu(){
-    $this->sm->editSubMenu();
-    $this->session->set_flashdata('message', '<div class="alert alert-success" 
+  public function editSubMenu()
+  {
+    $data = [
+      'user'     => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+      'menu'     => $this->db->get('tb_m_menu')->result_array(),
+      'subMenu'  => $this->sm->getSubMenu(),
+      'title'    => 'SubMenu Management | beautyBooster.id',
+      'css'      => 'assets/css/homeAdmin.css',
+      'js'       => 'assets/js/subMenuAdmin.js'
+    ];
+
+    $this->form_validation->set_rules('menu_id', 'Menu', 'required');
+    $this->form_validation->set_rules('title', 'Title', 'required');
+    $this->form_validation->set_rules('icon', 'Icon', 'required');
+    $this->form_validation->set_rules('url', 'Url', 'required');
+
+    if($this->form_validation->run() == false){
+      $this->load->view('Master_templates/header', $data);
+      $this->load->view('Master_templates/side-navbar', $data);
+      $this->load->view('Master_menu/sub_menu',$data);
+      $this->load->view('Master_templates/footer', $data);
+    }else{
+      $this->sm->editSubMenu();
+      $this->session->set_flashdata('message', '<div class="alert alert-success" 
         role="alert">SubMenu Updated Successfully!</div>');
-    redirect('master_sub_menu');
+      redirect('master_sub_menu');
+    }
+    
   }
 }
