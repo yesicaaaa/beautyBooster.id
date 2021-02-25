@@ -2,11 +2,11 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Master_sub_menu_model extends CI_Model{
-  public function getSubMenu(){
+  public function getSubMenu($limit, $start){
     $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
               FROM `tb_m_sub_menu` JOIN `tb_m_menu`
               ON `tb_m_sub_menu`.`menu_id` = `tb_m_menu`.`id`";
-    return $this->db->query($query)->result_array();
+    return $this->db->query($query, $limit, $start)->result_array();
   }
 
   public function deleteSubMenu($id){
@@ -22,5 +22,9 @@ class Master_sub_menu_model extends CI_Model{
     ];
     $this->db->where('id', $this->input->post('id'));
     $this->db->update('tb_m_sub_menu', $data);
+  }
+
+  public function countAllSubMenu(){
+    return $this->db->get('tb_m_sub_menu')->num_rows();
   }
 }

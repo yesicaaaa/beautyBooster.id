@@ -11,7 +11,6 @@ class Master_menu extends CI_Controller {
     $data = [
       'user'    => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
       'menu'    => $this->db->get('tb_m_menu')->result_array(),
-      'subMenu' => $this->db->get('tb_m_sub_menu')->result_array(), 
       'title'   => 'Menu Management | beautyBooster.id',
       'css'     => 'assets/css/homeAdmin.css',
       'js'      => 'assets/js/homeAdmin.js'
@@ -45,7 +44,6 @@ class Master_menu extends CI_Controller {
   public function editMenu(){
     $data = [
       'user'    => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
-      'menu'    => $this->db->get('tb_m_menu')->result_array(),
       'subMenu' => $this->db->get('tb_m_sub_menu')->result_array(), 
       'title'   => 'Menu Management | beautyBooster.id',
       'css'     => 'assets/css/homeAdmin.css',

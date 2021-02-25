@@ -14,4 +14,8 @@ class Master_menu_model extends CI_Model{
     $this->db->where('id', $this->input->post('id'));
     $this->db->update('tb_m_menu', $data);
   }
+
+  public function getMenu(){
+    return $this->db->get('tb_m_menu')->result_array();
+  }
 }

@@ -28,6 +28,9 @@
           <?php endforeach; ?>
           </tbody>
       </table>
+      <div class="pagination">
+        <?= $this->pagination->create_links(); ?>
+      </div>
     </div>
   </div>
 </div>

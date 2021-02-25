@@ -12,12 +12,21 @@ class Master_sub_menu extends CI_Controller{
   {
     $data = [
       'user'     => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
-      'menu'     => $this->db->get('tb_m_menu')->result_array(),
-      'subMenu'  => $this->sm->getSubMenu(),
       'title'    => 'SubMenu Management | beautyBooster.id',
       'css'      => 'assets/css/homeAdmin.css',
       'js'       => 'assets/js/subMenuAdmin.js'
     ];
+
+    //pagination
+    $config['base_url'] = 'http://localhost/beautyBooster.id/Master_sub_menu/index';
+    $config['total_rows'] = $this->sm->countAllSubMenu();
+    $config['per_page'] = 5;
+
+    //initialize
+    $this->pagination->initialize($config);
+
+    $data['start']  = $this->uri->segment(3);
+    $data['subMenu'] = $this->sm->getSubMenu($config['per_page'], $data['start']);
 
     $this->form_validation->set_rules('menu_id', 'Menu', 'required');
     $this->form_validation->set_rules('title', 'Title', 'required');
@@ -63,12 +72,21 @@ class Master_sub_menu extends CI_Controller{
   {
     $data = [
       'user'     => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
-      'menu'     => $this->db->get('tb_m_menu')->result_array(),
-      'subMenu'  => $this->sm->getSubMenu(),
       'title'    => 'SubMenu Management | beautyBooster.id',
       'css'      => 'assets/css/homeAdmin.css',
       'js'       => 'assets/js/subMenuAdmin.js'
     ];
+
+    //pagination
+    $config['base_url'] = 'http://localhost/beautyBooster.id/Master_sub_menu/index';
+    $config['total_rows'] = $this->sm->countAllSubMenu();
+    $config['per_page'] = 5;
+
+    //initialize
+    $this->pagination->initialize($config);
+
+    $data['start']  = $this->uri->segment(3);
+    $data['subMenu'] = $this->sm->getSubMenu($config['per_page'], $data['start']);
 
     $this->form_validation->set_rules('menu_id', 'Menu', 'required');
     $this->form_validation->set_rules('title', 'Title', 'required');
@@ -85,7 +103,6 @@ class Master_sub_menu extends CI_Controller{
       $this->session->set_flashdata('message', '<div class="alert alert-success" 
         role="alert">SubMenu Updated Successfully!</div>');
       redirect('master_sub_menu');
-    }
-    
+    } 
   }
 }

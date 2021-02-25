@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Lexend+Mega&display=swap');
 
-/* body{
-  background-color: rgba(196, 186, 188, 0.4);
-} */
+body{
+  overflow-x: hidden;
+}
 
 a{
   color: white;
@@ -14,10 +14,15 @@ a:hover{
   color: rgba(255,255,255,0.5);
 }
 
+nav{
+  position: sticky !important;
+}
+
 .navbar-brand{
   font-family: 'Great Vibes', cursive;
   font-size: 40px;
   color: #7f4039 !important;
+  position: sticky;
 }
 
 .bg-nav{
@@ -119,7 +124,7 @@ a:hover{
   width: 100%;
   font-family: 'Josefin Sans', sans-serif;
   margin-left: 21%;
-  position: fixed;
+  position: relative;
 }
 
 h1{
@@ -145,4 +150,13 @@ table{
 
 .badge-delete{
   background-color: #48402c;
+}
+
+.pagination{
+  margin-left: 30px;
+  color: #823f37;
+}
+
+.pagination a {
+  color: black;
 }

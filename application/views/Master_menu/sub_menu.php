@@ -1,6 +1,18 @@
 <div class="main">
   <h1>SubMenu Management</h1>
   <div class="row">
+    <div class="col-md-4">
+      <form action="<?= base_url('master_sub_menu/searchSubMenu') ?>" method="POST">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search Submenu..." name="keyword" autocomplete="off" autofocus> 
+          <div class="input-group-append">
+            <input class="btn btn-outline-secondary" type="submit" name="submit">
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row">
     <div style="width: 79%;">
       <?= form_error('menu_id', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('title', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
@@ -37,6 +49,9 @@
           <?php endforeach; ?>
           </tbody>
       </table>
+      <div class="pagination">
+        <?= $this->pagination->create_links(); ?>
+      </div>
     </div>
   </div>
 </div>
