@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master_sub_menu extends CI_Controller{
+class Master_sub_menu extends CI_Controller
+{
   public function __construct()
   {
     parent::__construct();
@@ -12,13 +13,14 @@ class Master_sub_menu extends CI_Controller{
   {
     $data = [
       'user'     => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+      'menu'     => $this->db->get('tb_m_menu')->result_array(),
       'title'    => 'SubMenu Management | beautyBooster.id',
       'css'      => 'assets/css/homeAdmin.css',
       'js'       => 'assets/js/subMenuAdmin.js'
     ];
 
     //pagination
-    $config['base_url'] = 'http://localhost/beautyBooster.id/Master_sub_menu/index';
+    $config['base_url'] = 'http://localhost/beautyBooster.id/Master_sub_menu/index/';
     $config['total_rows'] = $this->sm->countAllSubMenu();
     $config['per_page'] = 5;
 
@@ -33,12 +35,12 @@ class Master_sub_menu extends CI_Controller{
     $this->form_validation->set_rules('icon', 'Icon', 'required');
     $this->form_validation->set_rules('url', 'Url', 'required');
 
-    if($this->form_validation->run() == false){
+    if ($this->form_validation->run() == false) {
       $this->load->view('Master_templates/header', $data);
       $this->load->view('Master_templates/side-navbar', $data);
-      $this->load->view('Master_menu/sub_menu',$data);
+      $this->load->view('Master_menu/sub_menu', $data);
       $this->load->view('Master_templates/footer', $data);
-    }else{
+    } else {
       $data = [
         'menu_id'   => htmlspecialchars($this->input->post('menu_id')),
         'title'     => htmlspecialchars($this->input->post('title')),
@@ -93,16 +95,16 @@ class Master_sub_menu extends CI_Controller{
     $this->form_validation->set_rules('icon', 'Icon', 'required');
     $this->form_validation->set_rules('url', 'Url', 'required');
 
-    if($this->form_validation->run() == false){
+    if ($this->form_validation->run() == false) {
       $this->load->view('Master_templates/header', $data);
       $this->load->view('Master_templates/side-navbar', $data);
-      $this->load->view('Master_menu/sub_menu',$data);
+      $this->load->view('Master_menu/sub_menu', $data);
       $this->load->view('Master_templates/footer', $data);
-    }else{
+    } else {
       $this->sm->editSubMenu();
       $this->session->set_flashdata('message', '<div class="alert alert-success" 
         role="alert">SubMenu Updated Successfully!</div>');
       redirect('master_sub_menu');
-    } 
+    }
   }
 }

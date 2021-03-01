@@ -6,13 +6,11 @@ class Main extends CI_Controller {
   {
     $data = [
       'title'   => 'beautyBooster.id',
-      'css'     => 'assets/css/landingPage.css',
-      'js'      => 'assets/js/landingPage.js'
+      'css'     => 'assets/css/landingPage2.css',
+      'js'      => 'assets/js/landingPage2.js'
     ];
 
-    $this->load->view('templates/header', $data);
-    $this->load->view('landingPage');
-    $this->load->view('templates/footer', $data);
+    $this->load->view('landingPage2');
   }
 
   public function home()

@@ -3,12 +3,12 @@
   <div class="row">
     <div class="col-md-4">
       <form action="<?= base_url('master_sub_menu/searchSubMenu') ?>" method="POST">
-        <div class="input-group mb-3">
+        <!-- <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Search Submenu..." name="keyword" autocomplete="off" autofocus> 
           <div class="input-group-append">
             <input class="btn btn-outline-secondary" type="submit" name="submit">
           </div>
-        </div>
+        </div> -->
       </form>
     </div>
   </div>
