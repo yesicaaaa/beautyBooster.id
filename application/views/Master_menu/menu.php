@@ -1,5 +1,5 @@
 <div class="main">
-  <h1>Menu Management</h1>
+  <h4>Menu Management</h4>
   <div class="row">
     <div class="col-lg-6">
       <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>'); ?>

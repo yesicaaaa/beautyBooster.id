@@ -1,14 +1,14 @@
 <div class="main">
-  <h1>SubMenu Management</h1>
+  <h4>SubMenu Management</h4>
   <div class="row">
     <div class="col-md-4">
       <form action="<?= base_url('master_sub_menu/searchSubMenu') ?>" method="POST">
-        <!-- <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search Submenu..." name="keyword" autocomplete="off" autofocus> 
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search Submenu Title..." name="keyword" autocomplete="off" autofocus> 
           <div class="input-group-append">
-            <input class="btn btn-outline-secondary" type="submit" name="submit">
+            <input class="btn btn-info" type="submit" name="submit">
           </div>
-        </div> -->
+        </div>
       </form>
     </div>
   </div>
@@ -20,6 +20,7 @@
       <?= form_error('url', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= $this->session->flashdata('message'); ?>
       <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newSubMenuModal">Add New SubMenu</a></b>
+      <!-- <h6>Results: <?= $total_rows; ?></h6> -->
       <table class="table">
         <thead>
           <tr>
@@ -32,10 +33,9 @@
           </tr>
         </thead>
         <tbody>
-        <?php $i = 1; ?>
         <?php foreach ($subMenu as $sm) : ?>
           <tr>
-            <th scope="row"><?= $i; ?></th>
+            <th scope="row"><?= ++$start; ?></th>
             <td><?= $sm['menu']; ?></td>
             <td><?= $sm['title']; ?></td>
             <td><?= $sm['icon']; ?></td>
@@ -45,13 +45,10 @@
               <a href="<?= base_url(); ?>master_sub_menu/deleteSubMenu/<?= $sm['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
             </td>
           </tr>
-          <?php $i++ ?>
           <?php endforeach; ?>
           </tbody>
       </table>
-      <div class="pagination">
         <?= $this->pagination->create_links(); ?>
-      </div>
     </div>
   </div>
 </div>

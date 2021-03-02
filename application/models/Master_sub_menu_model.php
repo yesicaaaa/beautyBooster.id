@@ -3,12 +3,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Master_sub_menu_model extends CI_Model
 {
-  public function getSubMenu($limit, $start)
+  public function getSubMenu($start, $length, $keyword = null)
   {
-    $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
+    // if($keyword){
+    //   $this->db->like('title', $keyword);
+    // }
+    if($keyword != null){
+      $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
               FROM `tb_m_sub_menu` JOIN `tb_m_menu`
-              ON `tb_m_sub_menu`.`menu_id` = `tb_m_menu`.`id`";
-    return $this->db->query($query, $limit, $start)->result_array();
+              ON `tb_m_sub_menu`.`menu_id` = `tb_m_menu`.`id`
+              where `tb_m_sub_menu`.`title` like '%$keyword%'
+              limit $length, $start";
+    }else{
+      $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
+              FROM `tb_m_sub_menu` JOIN `tb_m_menu`
+              ON `tb_m_sub_menu`.`menu_id` = `tb_m_menu`.`id`
+              limit $length, $start";
+    }
+    
+    return $this->db->query($query)->result_array();
   }
 
   public function deleteSubMenu($id)
