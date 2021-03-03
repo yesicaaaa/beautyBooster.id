@@ -2,14 +2,17 @@
   <h4>SubMenu Management</h4>
   <div class="row">
     <div class="col-md-4">
-      <form action="<?= base_url('master_sub_menu/searchSubMenu') ?>" method="POST">
+      <form action="<?= base_url('master_sub_menu') ?>" method="POST">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Search Submenu Title..." name="keyword" autocomplete="off" autofocus> 
+          <input type="text" class="form-control" placeholder="Search Submenu Title..." name="keyword" autocomplete="off" autofocus>
           <div class="input-group-append">
             <input class="btn btn-info" type="submit" name="submit">
           </div>
         </div>
       </form>
+    </div>
+    <div class="col-md-3">
+      <a href="<?= base_url(); ?>master_sub_menu/refresh"><img src="<?= base_url(); ?>assets/img/refresh.png"></a>
     </div>
   </div>
   <div class="row">
@@ -20,7 +23,7 @@
       <?= form_error('url', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= $this->session->flashdata('message'); ?>
       <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newSubMenuModal">Add New SubMenu</a></b>
-      <!-- <h6>Results: <?= $total_rows; ?></h6> -->
+      <h6>Results: <?= $total_rows; ?></h6>
       <table class="table">
         <thead>
           <tr>
@@ -33,22 +36,31 @@
           </tr>
         </thead>
         <tbody>
-        <?php foreach ($subMenu as $sm) : ?>
+          <?php if(empty($subMenu)) : ?>
           <tr>
-            <th scope="row"><?= ++$start; ?></th>
-            <td><?= $sm['menu']; ?></td>
-            <td><?= $sm['title']; ?></td>
-            <td><?= $sm['icon']; ?></td>
-            <td><?= $sm['url']; ?></td>
-            <td>
-              <a href="javascript:getData(<?= $sm['id'] ?>);" class="badge badge-edit">Edit</a>
-              <a href="<?= base_url(); ?>master_sub_menu/deleteSubMenu/<?= $sm['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
+            <td colspan="6">
+              <div class="alert alert-danger" role="alert">
+                Data not found!
+              </div>
             </td>
           </tr>
+          <?php endif; ?>
+          <?php foreach ($subMenu as $sm) : ?>
+            <tr>
+              <th scope="row"><?= ++$start; ?></th>
+              <td><?= $sm['menu']; ?></td>
+              <td><?= $sm['title']; ?></td>
+              <td><?= $sm['icon']; ?></td>
+              <td><?= $sm['url']; ?></td>
+              <td>
+                <a href="javascript:getData(<?= $sm['id'] ?>);" class="badge badge-edit">Edit</a>
+                <a href="<?= base_url(); ?>master_sub_menu/deleteSubMenu/<?= $sm['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
+              </td>
+            </tr>
           <?php endforeach; ?>
-          </tbody>
+        </tbody>
       </table>
-        <?= $this->pagination->create_links(); ?>
+      <?= $this->pagination->create_links(); ?>
     </div>
   </div>
 </div>
@@ -69,9 +81,9 @@
           <div class="form-group">
             <select name="menu_id" id="menu" class="form-control">
               <option>Select Menu</option>
-                <?php foreach ($menu as $m) : ?>
-                  <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
-                <?php endforeach; ?>
+              <?php foreach ($menu as $m) : ?>
+                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group">
@@ -110,9 +122,9 @@
           <div class="form-group">
             <select name="menu_id" id="menuEdit" class="form-control">
               <option value="">Select Menu</option>
-                <?php foreach ($menu as $m) : ?>
-                  <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
-                <?php endforeach; ?>
+              <?php foreach ($menu as $m) : ?>
+                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+              <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group">

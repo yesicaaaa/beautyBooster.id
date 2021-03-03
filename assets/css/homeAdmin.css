@@ -132,6 +132,11 @@ h4{
   color: #7f4039;
 }
 
+h6{
+  margin-left: 12px;
+  margin-bottom: -3px;
+}
+
 .btn-menu{
   color: #48402c;
 }
@@ -159,4 +164,9 @@ table{
 
 .pagination a {
   color: black;
+}
+
+.col-md-3 img{
+  margin-left: -13px;
+  margin-top: 8px;
 }

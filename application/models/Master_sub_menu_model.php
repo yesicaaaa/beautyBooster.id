@@ -8,19 +8,19 @@ class Master_sub_menu_model extends CI_Model
     // if($keyword){
     //   $this->db->like('title', $keyword);
     // }
-    if($keyword != null){
+    if ($keyword != null) {
       $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
               FROM `tb_m_sub_menu` JOIN `tb_m_menu`
               ON `tb_m_sub_menu`.`menu_id` = `tb_m_menu`.`id`
               where `tb_m_sub_menu`.`title` like '%$keyword%'
               limit $length, $start";
-    }else{
+    } else {
       $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
               FROM `tb_m_sub_menu` JOIN `tb_m_menu`
               ON `tb_m_sub_menu`.`menu_id` = `tb_m_menu`.`id`
               limit $length, $start";
     }
-    
+
     return $this->db->query($query)->result_array();
   }
 

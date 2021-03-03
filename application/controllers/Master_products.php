@@ -14,8 +14,7 @@ class Master_products extends CI_Controller {
       'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
       'menu'      => $this->db->get('tb_m_menu')->result_array(),
       'subMenu'   => $this->pm->getSubMenu(),
-      'title'     => $this->pm->getProductTitle(),
-      'mainTitle' => '',
+      'title'     => 'All Products | beautyBooster.id',
       'css'       => 'assets/css/homeAdmin.css',
       'js'        => ''
     ];

@@ -1,4 +1,7 @@
 $(document).ready(function(){
+  //navbar
+  $()
+
   // carousel
   $('.navbar-toggler').click(function(){
     if($(this).attr('aria-expanded', 'true')){
