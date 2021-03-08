@@ -49,7 +49,8 @@ form {
 p {
 	text-align: center;
 	color: #4f4532;
-	padding: 5px 0 20px 0;
+	padding: 0 0 20px 0;
+	font-size: 13px;
 }
 
 span a {
@@ -59,4 +60,48 @@ span a {
 a:hover {
 	text-decoration: none;
 	color: #544b3a;
+}
+
+.forgotpass{
+	color: #c1967e;
+	margin-left: 121px;
+	font-size: 13px;
+}
+
+.btn-reset{
+	border: 2px solid #675a47;
+	margin: 6px 65px;
+	color: #675a47;
+	width: 53%;
+}
+
+.back{
+	color: #675a47;
+	margin-left: 134px;
+	font-size: 13px;
+}
+
+.containerfp{
+	background-color: rgba(255, 255, 255, 0.4);
+	margin-top: 9%;
+	width: 28%;
+	border-radius: 5px;
+	padding-bottom: 20px;
+}
+
+.changepass{
+	text-align: center;
+	margin-top: -28px;
+	margin-bottom: 20px;
+}
+
+.changepass span{
+	color: #544b3a;
+}
+
+.btn-change{
+	border: 2px solid #675a47;
+	margin: 6px 56px;
+	color: #675a47;
+	width: 58%;
 }

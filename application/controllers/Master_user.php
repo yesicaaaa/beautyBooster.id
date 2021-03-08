@@ -105,7 +105,6 @@ class Master_user extends CI_Controller{
           redirect('master_user');
         }
       }
-      
     }
   }
 
@@ -116,5 +115,64 @@ class Master_user extends CI_Controller{
     $this->session->set_flashdata('message', '<div class="alert alert-success" 
     role="alert">You have been logged out!</div>');
     redirect('signin');
+  }
+
+  public function usersShow()
+  {
+    $data = [
+      'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+      'userdata'  => $this->db->get('user')->result_array(),
+      'title'     => 'User Management | beautyBooster.id',
+      'css'       => 'assets/css/homeAdmin.css',
+      'js'        => ''
+    ];
+
+    $this->load->view('Master_templates/header', $data);
+    $this->load->view('Master_templates/side-navbar', $data);
+    $this->load->view('Master_user/user', $data);
+    $this->load->view('Master_templates/footer', $data);
+  }
+
+  public function deleteUser($id){
+    $this->um->deleteUser($id);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" 
+        role="alert">User Deleted Successfully!</div>');
+    redirect('master_user/usersShow');
+  }
+
+  public function getUserRowByAdmin()
+  {
+    $id = $this->input->post('id');
+    $row = $this->db->where('id', $id)->get('user')->row_array();
+    echo json_encode($row);
+  }
+
+  public function editUserByAdmin(){
+    $data = [
+      'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
+      'userdata'  => $this->db->get('user')->result_array(),
+      'title'     => 'User Management | beautyBooster.id',
+      'css'       => 'assets/css/homeAdmin.css',
+      'js'        => ''
+    ];
+
+    $this->form_validation->set_rules('name', 'Name', 'required');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+    $this->form_validation->set_rules('image', 'Image', 'required');
+    $this->form_validation->set_rules('role_id', 'Role Id', 'required');
+    $this->form_validation->set_rules('is_active', 'Is Active', 'required');
+
+    if($this->form_validation->run() == false){
+      $this->load->view('Master_templates/header', $data);
+      $this->load->view('Master_templates/side-navbar', $data);
+      $this->load->view('Master_user/user', $data);
+      $this->load->view('Master_templates/footer', $data);
+    } else {
+      $this->um->editUserByAdmin();
+      $this->session->set_flashdata('message', '<div class="alert alert-success" 
+        role="alert">User Updated Successfully!</div>');
+      redirect('master_user/usersShow');
+    }
+
   }
 }

@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container containerfp">
 
-  <h1>Sign in</h1>
+  <h1>Forgot Password</h1>
   <?= $this->session->flashdata('message'); ?>
-  <form action="<?= base_url('signin'); ?>" method="POST">
+  <form action="<?= base_url('signup/forgotPassword'); ?>" method="POST">
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-prepend">
@@ -12,19 +12,9 @@
       </div>
       <?= form_error('email', ' <small class="text-danger pl-3">', '</small>'); ?>
     </div>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="input-group-text fa fa-key" id="basic-addon1"></span>
-        </div>
-        <input type="password" class="form-control" placeholder="Password" name="password"><br>
-      </div>
-      <?= form_error('password', ' <small class="text-danger pl-3">', '</small>'); ?>
-    </div>
-    <button type="submit" class="btn">Sign in</button>
+    <button type="submit" class="btn btn-reset">Reset Password</button>
   </form>
-  <a id="pass" class="forgotpass" href="<?= base_url(); ?>signup/forgotPassword">Forgot password?</a>
-  <p>Don't have an account yet? <br><span><a href="<?= base_url(); ?>signup">Sign up </a></span>here!</p>
+  <a id="pass" class="back" href="<?= base_url(); ?>signin">Back to Signin</a>
 
 </div>
 

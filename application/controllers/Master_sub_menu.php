@@ -42,7 +42,7 @@ class Master_sub_menu extends CI_Controller
     $start = ($data['start'] > 0) ? $data['start'] : 0;
     $data['subMenu'] = $this->sm->getSubMenu($config['per_page'], $start, $data['keyword']);
 
-    if(! $this->input->post('submit')){
+    if (!$this->input->post('submit')) {
       $this->form_validation->set_rules('menu_id', 'Menu', 'required');
       $this->form_validation->set_rules('title', 'Title', 'required');
       $this->form_validation->set_rules('icon', 'Icon', 'required');
@@ -88,12 +88,34 @@ class Master_sub_menu extends CI_Controller
   {
     $data = [
       'user'     => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
-      'menu'     => $this->db->get('tb_m_menu')->result_menu(),
-      'subMenu'  => $this->mm->getSubMenu(),
+      'menu'     => $this->db->get('tb_m_menu')->result_array(),
       'title'    => 'SubMenu Management | beautyBooster.id',
       'css'      => 'assets/css/homeAdmin.css',
       'js'       => 'assets/js/subMenuAdmin.js'
     ];
+
+    if ($this->input->post('submit')) {
+      $data['keyword'] = $this->input->post('keyword');
+      $this->session->set_userdata('keyword', $data['keyword']);
+    } else {
+      $data['keyword'] = $this->session->userdata('keyword');
+    }
+
+    //pagination
+    $this->db->like('title', $data['keyword']);
+    $this->db->from('tb_m_sub_menu');
+    $config['total_rows'] = $this->db->count_all_results();
+    $data['total_rows'] = $config['total_rows'];
+    $config['per_page'] = 5;
+
+    //initialize
+    $this->pagination->initialize($config);
+
+    $data['start']  = $this->uri->segment(3);
+    // $data['start']  .= ($data['start'] != "") ? $data['start'] : "0";
+
+    $start = ($data['start'] > 0) ? $data['start'] : 0;
+    $data['subMenu'] = $this->sm->getSubMenu($config['per_page'], $start, $data['keyword']);
 
     $this->form_validation->set_rules('menu_id', 'Menu', 'required');
     $this->form_validation->set_rules('title', 'Title', 'required');
@@ -118,4 +140,6 @@ class Master_sub_menu extends CI_Controller
     $this->session->unset_userdata('keyword');
     redirect('master_sub_menu');
   }
+
+  
 }

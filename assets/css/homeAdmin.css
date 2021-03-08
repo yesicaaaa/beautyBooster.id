@@ -139,6 +139,7 @@ h6{
 
 .btn-menu{
   color: #48402c;
+  margin-top: -25px;
 }
 
 table{
@@ -158,7 +159,7 @@ table{
 }
 
 .pagination{
-  margin: 20px 50px 0 0 ;
+  margin: 0 50px 0 0 ;
   color: #823f37;
 }
 

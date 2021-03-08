@@ -1,30 +1,28 @@
-<div class="container">
+<div class="container containerfp">
 
-  <h1>Sign in</h1>
-  <?= $this->session->flashdata('message'); ?>
-  <form action="<?= base_url('signin'); ?>" method="POST">
+  <h1>Change Password</h1>
+  <h6 class="changepass">for <span><?= $this->session->userdata('reset_email') ?></span></h6>
+  <form action="<?= base_url('signup/changePassword'); ?>" method="POST">
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text fa fa-envelope" id="basic-addon1"></span>
         </div>
-        <input type="email" class="form-control" placeholder="Email" name="email" value="<?= set_value('email'); ?>"><br>
+        <input type="password" class="form-control" placeholder="New Password" name="password1"><br>
       </div>
-      <?= form_error('email', ' <small class="text-danger pl-3">', '</small>'); ?>
+      <?= form_error('password1', ' <small class="text-danger">', '</small>'); ?>
     </div>
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-prepend">
-          <span class="input-group-text fa fa-key" id="basic-addon1"></span>
+          <span class="input-group-text fa fa-envelope" id="basic-addon1"></span>
         </div>
-        <input type="password" class="form-control" placeholder="Password" name="password"><br>
+        <input type="password" class="form-control" placeholder="Confirm New Password" name="password2"><br>
       </div>
-      <?= form_error('password', ' <small class="text-danger pl-3">', '</small>'); ?>
+      <?= form_error('password2', ' <small class="text-danger">', '</small>'); ?>
     </div>
-    <button type="submit" class="btn">Sign in</button>
+    <button type="submit" class="btn btn-change">Change Password</button>
   </form>
-  <a id="pass" class="forgotpass" href="<?= base_url(); ?>signup/forgotPassword">Forgot password?</a>
-  <p>Don't have an account yet? <br><span><a href="<?= base_url(); ?>signup">Sign up </a></span>here!</p>
 
 </div>
 

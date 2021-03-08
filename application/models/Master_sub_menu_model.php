@@ -5,9 +5,6 @@ class Master_sub_menu_model extends CI_Model
 {
   public function getSubMenu($start, $length, $keyword = null)
   {
-    // if($keyword){
-    //   $this->db->like('title', $keyword);
-    // }
     if ($keyword != null) {
       $query = "SELECT `tb_m_sub_menu`.*, `tb_m_menu`.`menu`
               FROM `tb_m_sub_menu` JOIN `tb_m_menu`
@@ -39,10 +36,5 @@ class Master_sub_menu_model extends CI_Model
     ];
     $this->db->where('id', $this->input->post('id'));
     $this->db->update('tb_m_sub_menu', $data);
-  }
-
-  public function countAllSubMenu()
-  {
-    return $this->db->get('tb_m_sub_menu')->num_rows();
   }
 }
