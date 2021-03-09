@@ -11,4 +11,19 @@ class master_products_model extends CI_Model
               ";
     return $this->db->query($query)->result_array();
   }
+
+  public function getProducts()
+  {
+    $query = "SELECT `tb_m_products`.*, `menu_categories`.`category`, `menu_sub_categories`.`title`
+              FROM `tb_m_products` 
+              JOIN `menu_categories` ON `tb_m_products`.`category_id` = `menu_categories`.`id`
+              JOIN `menu_sub_categories` ON `tb_m_products`.`sub_category_id` = `menu_sub_categories`.`id`
+              ";
+    return $this->db->query($query)->result_array();
+  }
+
+  public function deleteProduct($id)
+  {
+    $this->db->delete('tb_m_products', ['id' => $id]);
+  }
 }

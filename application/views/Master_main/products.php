@@ -24,8 +24,8 @@
       <?= form_error('price', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('description', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= $this->session->flashdata('message'); ?>
-      <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newSubMenuModal">Add New SubMenu</a></b>
-      <h6>Results: <?= $total_rows; ?></h6>
+      <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newProductModal">Add New Product</a></b>
+      <!-- <h6>Results: <?= $total_rows; ?></h6> -->
       <table class="table">
         <thead>
           <tr>
@@ -40,7 +40,7 @@
           </tr>
         </thead>
         <tbody>
-          <?php if (empty($subMenu)) : ?>
+          <?php if (empty($products)) : ?>
             <tr>
               <td colspan="6">
                 <div class="alert alert-danger" role="alert">
@@ -49,55 +49,69 @@
               </td>
             </tr>
           <?php endif; ?>
-          <?php foreach ($subMenu as $sm) : ?>
+          <?php $i = 1; ?>
+          <?php foreach ($products as $pr) : ?>
             <tr>
-              <th scope="row"><?= ++$start; ?></th>
-              <td><?= $sm['menu']; ?></td>
-              <td><?= $sm['title']; ?></td>
-              <td><?= $sm['icon']; ?></td>
-              <td><?= $sm['url']; ?></td>
+              <th scope="row"><?= $i++; ?></th>
+              <td><?= $pr['category']; ?></td>
+              <td><?= $pr['title']; ?></td>
+              <td><?= $pr['product_name']; ?></td>
+              <td><?= $pr['stock']; ?></td>
+              <td><?= $pr['price']; ?></td>
+              <td><?= $pr['description']; ?></td>
               <td>
-                <a href="javascript:getData(<?= $sm['id'] ?>);" class="badge badge-edit">Edit</a>
-                <a href="<?= base_url(); ?>master_sub_menu/deleteSubMenu/<?= $sm['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
+                <a href="javascript:getData(<?= $pr['id'] ?>);" class="badge badge-edit">Edit</a>
+                <a href="<?= base_url(); ?>master_products/deleteProduct/<?= $pr['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
               </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
-      <?= $this->pagination->create_links(); ?>
+      <!-- <?= $this->pagination->create_links(); ?> -->
     </div>
   </div>
 </div>
 
 
-<!-- Modal New Menu-->
-<div class="modal fade" id="newSubMenuModal" tabindex="-1" aria-labelledby="newSubMenuModalLabel" aria-hidden="true">
+<!-- Modal New Product-->
+<div class="modal fade" id="newProductModal" tabindex="-1" aria-labelledby="newProductModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newSubMenuModalLabel">Add New SubMenu</h5>
+        <h5 class="modal-title" id="newProductModalLabel">Add New Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('master_sub_menu'); ?>" method="POST">
+      <form action="<?= base_url('master_products'); ?>" method="POST">
         <div class="modal-body">
           <div class="form-group">
-            <select name="menu_id" id="menu" class="form-control">
-              <option>Select Menu</option>
-              <?php foreach ($menu as $m) : ?>
-                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+            <select name="category_id" id="category" class="form-control">
+              <option>Select Category</option>
+              <?php foreach ($product_categories as $pc) : ?>
+                <option value="<?= $pc['id']; ?>"><?= $pc['category']; ?></option>
               <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+            <select name="sub_category_id" id="sub_category" class="form-control">
+              <option>Select Sub Category</option>
+              <?php foreach ($product_sub_categories as $psc) : ?>
+                <option value="<?= $psc['id']; ?>"><?= $psc['title']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="icon" name="icon" placeholder="Icon">
+            <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product Name">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="url" name="url" placeholder="Url">
+            <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="price" name="price" placeholder="Price">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="description" name="description" placeholder="Description">
           </div>
         </div>
         <div class="modal-footer">

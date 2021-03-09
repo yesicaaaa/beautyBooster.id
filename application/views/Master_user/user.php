@@ -1,6 +1,6 @@
 <div class="main">
   <h4>User Management</h4>
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-md-4">
       <form action="<?= base_url('master_user/usersShow') ?>" method="POST">
         <div class="input-group mb-3">
@@ -14,7 +14,7 @@
     <div class="col-md-3">
       <a href="<?= base_url(); ?>master_user/refresh"><img src="<?= base_url(); ?>assets/img/refresh.png"></a>
     </div>
-  </div>
+  </div> -->
   <div class="row">
     <div style="width: 79%;">
       <?= form_error('name', '<div class="alert alert-danger" role="alert">', '</div>'); ?>

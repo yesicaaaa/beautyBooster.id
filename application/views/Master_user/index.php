@@ -1,5 +1,5 @@
 <div class="main">
-  <h1>My Profile</h1>
+  <h4>My Profile</h4>
   <?= form_error('name', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
   <?= form_error('email', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
   <?= form_error('image', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
@@ -10,7 +10,7 @@
   <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="<?= base_url('assets/img/').$user['image']; ?>" class="card-img" alt="...">
+        <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="card-img" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -74,7 +74,7 @@
             <input type="password" class="form-control" id="current_password" name="current_password" placeholder="Current Password">
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" id="new_password1" name="new_password1" placeholder="New Password">  
+            <input type="password" class="form-control" id="new_password1" name="new_password1" placeholder="New Password">
           </div>
           <div class="form-group">
             <input type="password" class="form-control" id="new_password2" name="new_password2" placeholder="Repeat Password">
@@ -92,7 +92,7 @@
 <script>
   var BASE_URL = '<?= base_url(); ?>';
 
-  function getData(id){
+  function getData(id) {
     $.ajax({
       type: 'POST',
       dataType: 'json',
@@ -100,7 +100,7 @@
       data: {
         id: id
       },
-      success: function(data){
+      success: function(data) {
         $('#idEdit').val(data.id);
         $('#nameEdit').val(data.name);
         $('#emailEdit').val(data.email);

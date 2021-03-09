@@ -26,17 +26,18 @@ nav{
 }
 
 .bg-nav{
-  background-color: rgba(200, 170, 159, 0.6);
+  background-color: rgba(200, 170, 159, 0.9);
 }
 
 .sidenav {
   height: 100%;
-  width: 270px;
+  width: 258px;
   position: fixed;
-  top: 86px;
+  top: 0px;
   left: 0;
   background-color: #823f37;
-  padding-top: 20px;
+  padding-top: 95px;
+  
 }
 
 .img-circle{

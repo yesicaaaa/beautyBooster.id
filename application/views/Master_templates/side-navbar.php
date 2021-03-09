@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar bg-nav">
+<nav class="navbar sticky-top bg-nav">
   <a class="navbar-brand">beautyBooster.id</a>
   <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="img-circle">
   <!-- <div class="fa fa-caret-down dropdown"></div> -->
