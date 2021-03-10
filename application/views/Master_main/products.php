@@ -67,11 +67,10 @@
           <?php endforeach; ?>
         </tbody>
       </table>
-      <!-- <?= $this->pagination->create_links(); ?> -->
+      <?= $this->pagination->create_links(); ?>
     </div>
   </div>
 </div>
-
 
 <!-- Modal New Product-->
 <div class="modal fade" id="newProductModal" tabindex="-1" aria-labelledby="newProductModalLabel" aria-hidden="true">
@@ -111,7 +110,7 @@
             <input type="text" class="form-control" id="price" name="price" placeholder="Price">
           </div>
           <div class="form-group">
-            <textarea class="form-control" id="description" name="description" placeholder="Description">
+            <textarea class="form-control" id="description" name="description" placeholder="Description"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -125,34 +124,45 @@
 
 
 <!-- Modal Edit Menu-->
-<div class="modal fade" id="newEditSubMenuModal" tabindex="-1" aria-labelledby="newEditSubMenuModalLabel" aria-hidden="true">
+<div class="modal fade" id="newEditProductModal" tabindex="-1" aria-labelledby="newEditProductModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newEditSubMenuModalLabel">Edit SubMenu</h5>
+        <h5 class="modal-title" id="newEditProductModalLabel">Edit Product</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('master_sub_menu/editSubMenu'); ?>" method="POST">
+      <form action="<?= base_url('master_products/editProduct'); ?>" method="POST">
         <div class="modal-body">
           <input type="hidden" id="idEdit" name="id">
           <div class="form-group">
-            <select name="menu_id" id="menuEdit" class="form-control">
-              <option value="">Select Menu</option>
-              <?php foreach ($menu as $m) : ?>
-                <option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+            <select name="category_id" id="categoryEdit" class="form-control">
+              <option>Select Category</option>
+              <?php foreach ($product_categories as $pc) : ?>
+                <option value="<?= $pc['id']; ?>"><?= $pc['category']; ?></option>
               <?php endforeach; ?>
             </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="titleEdit" name="title">
+            <select name="sub_category_id" id="sub_categoryEdit" class="form-control">
+              <option>Select Sub Category</option>
+              <?php foreach ($product_sub_categories as $psc) : ?>
+                <option value="<?= $psc['id']; ?>"><?= $psc['title']; ?></option>
+              <?php endforeach; ?>
+            </select>
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="iconEdit" name="icon">
+            <input type="text" class="form-control" id="product_nameEdit" name="product_name">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="urlEdit" name="url">
+            <input type="number" class="form-control" id="stockEdit" name="stock">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="priceEdit" name="price">
+          </div>
+          <div class="form-group">
+            <textarea class="form-control" id="descriptionEdit" name="description"></textarea>
           </div>
         </div>
         <div class="modal-footer">
@@ -166,4 +176,25 @@
 
 <script>
   var BASE_URL = '<?= base_url(); ?>'
+
+  function getData(id){
+    $.ajax({
+      type: 'POST',
+      dataType: 'json',
+      url: BASE_URL + 'master_products/getProductRow',
+      data: {
+        id: id
+      },
+      success: function(data){
+        $('#idEdit').val(data.id),
+        $('#categoryEdit').val(data.category_id),
+        $('#sub_categoryEdit').val(data.sub_category_id),
+        $('#product_nameEdit').val(data.product_name),
+        $('#stockEdit').val(data.stock),
+        $('#priceEdit').val(data.price),
+        $('#descriptionEdit').val(data.description),
+        $('#newEditProductModal').modal()
+      }
+    });
+  }
 </script>

@@ -36,7 +36,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('master_user/editUser'); ?>" method="POST">
+      <form action="<?= base_url('master_user/editUser'); ?>" method="POST" enctype="multipart/form-data">
         <div class="modal-body">
           <input type="hidden" id="idEdit" name="id">
           <div class="form-group">
@@ -46,7 +46,7 @@
             <input type="text" class="form-control" id="emailEdit" name="email">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" id="imageEdit" name="image">
+            <input type="file" class="form-control" id="imageEdit" name="image">
           </div>
         </div>
         <div class="modal-footer">

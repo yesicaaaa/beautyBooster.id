@@ -36,14 +36,14 @@
           </tr>
         </thead>
         <tbody>
-          <?php if(empty($subMenu)) : ?>
-          <tr>
-            <td colspan="6">
-              <div class="alert alert-danger" role="alert">
-                Data not found!
-              </div>
-            </td>
-          </tr>
+          <?php if (empty($subMenu)) : ?>
+            <tr>
+              <td colspan="6">
+                <div class="alert alert-danger" role="alert">
+                  Data not found!
+                </div>
+              </td>
+            </tr>
           <?php endif; ?>
           <?php foreach ($subMenu as $sm) : ?>
             <tr>

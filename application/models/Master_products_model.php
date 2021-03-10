@@ -26,4 +26,19 @@ class master_products_model extends CI_Model
   {
     $this->db->delete('tb_m_products', ['id' => $id]);
   }
+
+  public function editProduct()
+  {
+    $data = [
+      'category_id'       => htmlspecialchars($this->input->post('category_id')),
+      'sub_category_id'   => htmlspecialchars($this->input->post('sub_category_id')),
+      'product_name'      => htmlspecialchars($this->input->post('product_name')),
+      'stock'             => htmlspecialchars($this->input->post('stock')),
+      'price'             => htmlspecialchars($this->input->post('price')),
+      'description'       => htmlspecialchars($this->input->post('description'))
+    ];
+
+    $this->db->where('id', $this->input->post('id'));
+    $this->db->update('tb_m_products', $data);
+  }
 }

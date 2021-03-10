@@ -140,6 +140,4 @@ class Master_sub_menu extends CI_Controller
     $this->session->unset_userdata('keyword');
     redirect('master_sub_menu');
   }
-
-  
 }

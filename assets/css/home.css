@@ -1,138 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Sacramento&family=Caveat&family=Sriracha&family=Yantramanav&family=Lexend+Mega&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Josefin+Sans&family=Lexend+Mega&display=swap');
 
-/* body{
-  background-color: #d3ced2;
-} */
-
-a{
-  text-decoration: none;
+body {
+	overflow-x: hidden;
 }
 
-a:hover{
-  text-decoration: none;
-  color: white;
+a {
+	color: white;
+	text-decoration: none;
 }
 
-.navbar-brand{
-  font-family: 'Great Vibes', cursive;
-  font-size: 40px;
-  color: #7f4039 !important;
+a:hover {
+	text-decoration: none;
+	color: rgba(255, 255, 255, 0.5);
 }
 
-.bg-nav{
-  background-color: rgba(200, 170, 159, 0.6);
+nav {
+	position: sticky !important;
 }
 
-.searchbar{
-  margin-left: 72%;
+.navbar-brand {
+	font-family: 'Great Vibes', cursive;
+	font-size: 40px;
+	color: #7f4039 !important;
+	position: sticky;
 }
 
-/* input{
-  display: none;
-} */
-
-.form-search{
-  border-radius: 20px;
-}
-
-.search {
-  background-color: #b07f60;
-  padding: 10px 26px 10px 12px;
-  margin-right: 30px;
-  margin-left: -38px;
-  border-radius: 20px;
-  color: rgba(200, 170, 159, 0.6);
-}
-
-.form-control{
-  border-radius: 20px;
-  display: block;
-}
-
-.fa-opencart{
-  color: #7f4039;
-}
-
-.fa-opencart:hover{
-  color: white;
+.bg-nav {
+	background-color: rgba(200, 170, 159, 0.9);
 }
 
 .sidenav {
-  height: 100%;
-  width: 250px;
-  position: fixed;
-  top: 86px;
-  left: 0;
-  background-color: #823f37;
-  padding-top: 20px;
+	height: 100%;
+	width: 258px;
+	position: fixed;
+	top: 0px;
+	left: 0;
+	background-color: #823f37;
+	padding-top: 95px;
+
 }
 
-.img-circle{
-  border: 2px solid #7f4039;
-  z-index: 1;
-  width: 3%;
-  border-radius: 20px;
-  margin-right: -20px;
+.img-circle {
+	border: 2px solid #7f4039;
+	z-index: 1;
+	width: 3%;
+	border-radius: 20px;
+	margin-right: -77%;
 }
 
-.fa-caret-down{
-  color: #7f4039;
-  margin-right: 10px;
+.fa-caret-down {
+	color: #7f4039;
+	margin-right: 10px;
 }
 
-.cat{
-  font-family: 'Lexend Mega', sans-serif;
-  text-align: center;
-  color: white;
-  padding-bottom: 10px;
+.dropdown-menu {
+	top: 139% !important;
+	left: -136px !important;
 }
 
-.divider{
-  border-top: 1px solid rgba(223, 204, 197, 0.3);
-  padding-bottom: 15px;
+.dropdown-item {
+	padding-left: 15px;
+	padding-bottom: 10px;
 }
 
-.dropdown{
-  font-family: 'Yantramanav', sans-serif;
-  margin-left: 10px;
-  margin-bottom: 10px;
+.dropdown-menu a:hover {
+	color: #48402c !important;
 }
 
-.dropbtn {
-  margin-bottom: 20px !important;
-  color: white;
-  padding: 16px;
-  font-size: 18px;
-  border: none;
-  cursor: pointer;
+.fa-user {
+	color: #7f4039;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #823f37;
-  min-width: 160px;
-  z-index: 1;
-  padding: 0;
+.fa-caret-right {
+	color: #7f4039;
 }
 
-.dropdown-content a {
-  margin-left: 30px;
-  color: white;
-  padding-bottom: 3px;
-  text-decoration: none;
-  display: block;
+.item-desc {
+	padding-left: 6px;
+	font-family: 'Josefin Sans', sans-serif;
+	color: #7f4039;
 }
 
-.dropdown-content a:hover, .dropbtn:hover{
-  color: #dfccc5
+.dropdown-user {
+	border: none;
+	background-color: transparent;
 }
 
-.dropdown:hover .dropdown-content {
-  display: block;
+.cat {
+	font-family: 'Lexend Mega', sans-serif;
+	text-align: center;
+	color: white;
+	padding-bottom: 10px;
 }
 
-.main{
-  width: 250px;
-  margin-left: 21%;
+.divider {
+	border-top: 1px solid rgba(223, 204, 197, 0.3);
+	padding-bottom: 15px;
+}
+
+.user-divider {
+	border-top: 1px solid rgba(223, 204, 197, 0.3);
+	padding-bottom: 8px;
+}
+
+.sidebar-heading {
+	margin-left: 18px;
+	color: rgba(255, 255, 255, 0.5);
+	font-size: 15px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.sidebar-divider {
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+.submenu {
+	margin-left: 19px;
+	margin-bottom: 15px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+.main {
+	width: 100%;
+	font-family: 'Josefin Sans', sans-serif;
+	margin-left: 21%;
+	position: relative;
 }

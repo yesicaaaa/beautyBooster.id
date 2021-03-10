@@ -1,5 +1,5 @@
 <!-- Navbar -->
-<nav class="navbar bg-nav">
+<nav class="navbar sticky-top bg-nav">
   <a class="navbar-brand">beautyBooster.id</a>
   <div class="searchbar">
     <form>
@@ -20,14 +20,14 @@
   <!-- query menu -->
   <?php 
     $queryMenu = "SELECT * FROM `menu_categories`
-                  ORDER BY `menu` ASC";
+                  ORDER BY `category` ASC";
     $menu = $this->db->query($queryMenu)->result_array();
   ?>
 
   <!-- looping menu -->
   <?php foreach($menu as $m) : ?>
     <div class="dropdown">
-      <a class="dropbtn"><?= $m['menu']; ?> <span class="fa fa-angle-down"></span></a>
+      <a class="dropbtn"><?= $m['category']; ?> <span class="fa fa-angle-down"></span></a>
 
     <?php 
       $menuId = $m['id'];

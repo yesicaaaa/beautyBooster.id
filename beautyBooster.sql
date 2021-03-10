@@ -24,7 +24,7 @@ CREATE TABLE `user_access_menu` (
 
 CREATE TABLE `menu_categories` (
   `id` INT(11) PRIMARY KEY AUTO_INCREMENT,
-  `menu` VARCHAR(128)
+  `category` VARCHAR(128)
 );
 
 CREATE TABLE `user_role` (
@@ -52,4 +52,23 @@ CREATE TABLE `tb_m_sub_menu` (
   `icon` VARCHAR(128),
   `url` VARCHAR(128),
   `is_active` int(1)
+);
+
+CREATE TABLE `tb_m_products` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `category_id` INT,
+  `sub_category_id` INT,
+  `product_name` VARCHAR(128),
+  `rating` VARCHAR(128),
+  `stock` INT,
+  `price` INT,
+  `description` TEXT,
+  `date_created` INT
+);
+
+CREATE TABLE `user_token` (
+  `id` INT PRIMARY KEY AUTO_INCREMENT,
+  `email` VARCHAR(128),
+  `token` VARCHAR(255),
+  `date_created` INT
 );
