@@ -25,7 +25,7 @@
       <?= form_error('description', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= $this->session->flashdata('message'); ?>
       <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newProductModal">Add New Product</a></b>
-      <!-- <h6>Results: <?= $total_rows; ?></h6> -->
+      <h6>Results: <?= $total_rows; ?></h6>
       <table class="table">
         <thead>
           <tr>
@@ -49,10 +49,9 @@
               </td>
             </tr>
           <?php endif; ?>
-          <?php $i = 1; ?>
           <?php foreach ($products as $pr) : ?>
             <tr>
-              <th scope="row"><?= $i++; ?></th>
+              <th scope="row"><?= ++$start; ?></th>
               <td><?= $pr['category']; ?></td>
               <td><?= $pr['title']; ?></td>
               <td><?= $pr['product_name']; ?></td>

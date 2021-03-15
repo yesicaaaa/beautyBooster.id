@@ -18,15 +18,16 @@ class Master_sub_menu extends CI_Controller
       'css'      => 'assets/css/homeAdmin.css',
       'js'       => 'assets/js/subMenuAdmin.js'
     ];
-
+    
     if ($this->input->post('submit')) {
       $data['keyword'] = $this->input->post('keyword');
       $this->session->set_userdata('keyword', $data['keyword']);
     } else {
       $data['keyword'] = $this->session->userdata('keyword');
     }
-
+    
     //pagination
+    $config['base_url'] = 'http://localhost/beautyBooster.id/Master_sub_menu/index/';
     $this->db->like('title', $data['keyword']);
     $this->db->from('tb_m_sub_menu');
     $config['total_rows'] = $this->db->count_all_results();
@@ -37,7 +38,6 @@ class Master_sub_menu extends CI_Controller
     $this->pagination->initialize($config);
 
     $data['start']  = $this->uri->segment(3);
-    // $data['start']  .= ($data['start'] != "") ? $data['start'] : "0";
 
     $start = ($data['start'] > 0) ? $data['start'] : 0;
     $data['subMenu'] = $this->sm->getSubMenu($config['per_page'], $start, $data['keyword']);
@@ -63,7 +63,7 @@ class Master_sub_menu extends CI_Controller
         'is_active' => 1
       ];
       $this->db->insert('tb_m_sub_menu', $data);
-      $this->session->set_flashdata('message', '<div class="alert alert-success" 
+          $this->session->set_flashdata('message', '<div class="alert alert-success" 
           role="alert">SubMenu Added Successfully!</div>');
       redirect('master_sub_menu');
     }

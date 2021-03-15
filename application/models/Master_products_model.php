@@ -12,13 +12,24 @@ class master_products_model extends CI_Model
     return $this->db->query($query)->result_array();
   }
 
-  public function getProducts()
+  public function getProducts($limit, $start, $keyword = null)
   {
-    $query = "SELECT `tb_m_products`.*, `menu_categories`.`category`, `menu_sub_categories`.`title`
+    if ($keyword != null) {
+      $query = "SELECT `tb_m_products`.*, `menu_categories`.`category`, `menu_sub_categories`.`title`
               FROM `tb_m_products` 
               JOIN `menu_categories` ON `tb_m_products`.`category_id` = `menu_categories`.`id`
               JOIN `menu_sub_categories` ON `tb_m_products`.`sub_category_id` = `menu_sub_categories`.`id`
+              WHERE `tb_m_products`.`product_name` LIKE '%$keyword%'
+              LIMIT $start, $limit
               ";
+    } else {
+      $query = "SELECT `tb_m_products`.*, `menu_categories`.`category`, `menu_sub_categories`.`title`
+              FROM `tb_m_products` 
+              JOIN `menu_categories` ON `tb_m_products`.`category_id` = `menu_categories`.`id`
+              JOIN `menu_sub_categories` ON `tb_m_products`.`sub_category_id` = `menu_sub_categories`.`id`
+              LIMIT $start, $limit
+              ";
+    }
     return $this->db->query($query)->result_array();
   }
 

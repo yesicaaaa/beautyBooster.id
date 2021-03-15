@@ -1,10 +1,26 @@
 <div class="main">
   <h4>Menu Management</h4>
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-md-4">
+      <form action="<?= base_url('master_menu') ?>" method="POST">
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Search Submenu Title..." name="keyword" autocomplete="off" autofocus>
+          <div class="input-group-append">
+            <input class="btn btn-info" type="submit" name="submit">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-3">
+      <a href="<?= base_url(); ?>master_menu/refresh"><img src="<?= base_url(); ?>assets/img/refresh.png"></a>
+    </div>
+  </div>
+  <div class="row">
+    <div style="width: 79%;">
       <?= form_error('menu', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= $this->session->flashdata('message'); ?>
       <b><a href="" class="btn btn-menu" data-toggle="modal" data-target="#newMenuModal">Add New Menu</a></b>
+      <h6>Results: <?= $total_rows; ?></h6>
       <table class="table">
         <thead>
           <tr>
@@ -14,19 +30,26 @@
           </tr>
         </thead>
         <tbody>
-        <?php $i = 1; ?>
-        <?php foreach ($menu as $m) : ?>
-          <tr>
-            <th scope="row"><?= $i; ?></th>
-            <td><?= $m['menu']; ?></td>
-            <td>
-              <a href="javascript:getData(<?= $m['id'] ?>);" class="badge badge-edit">Edit</a>
-              <a href="<?= base_url(); ?>master_menu/deleteMenu/<?= $m['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
-            </td>
-          </tr>
-          <?php $i++ ?>
+          <?php if (empty($menu)) : ?>
+            <tr>
+              <td colspan="6">
+                <div class="alert alert-danger" role="alert">
+                  Data not found!
+                </div>
+              </td>
+            </tr>
+          <?php endif; ?>
+          <?php foreach ($menu as $m) : ?>
+            <tr>
+              <th scope="row"><?= ++$start; ?></th>
+              <td><?= $m['menu']; ?></td>
+              <td>
+                <a href="javascript:getData(<?= $m['id'] ?>);" class="badge badge-edit">Edit</a>
+                <a href="<?= base_url(); ?>master_menu/deleteMenu/<?= $m['id']; ?>" class="badge badge-delete" onclick="return confirm('Are You Sure?')">Delete</a>
+              </td>
+            </tr>
           <?php endforeach; ?>
-          </tbody>
+        </tbody>
       </table>
       <div class="pagination">
         <?= $this->pagination->create_links(); ?>

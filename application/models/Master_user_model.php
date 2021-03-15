@@ -3,6 +3,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Master_user_model extends CI_Model
 {
+  public function getUsers($limit, $start, $keyword = null)
+  {
+    if ($keyword != null) {
+      $query = "SELECT * 
+                FROM `user`
+                WHERE `name` LIKE '%$keyword%'
+                LIMIT $start, $limit
+              ";
+    } else {
+      $query = "SELECT * 
+                FROM `user`
+                LIMIT $start, $limit
+              ";
+    }
+
+    return $this->db->query($query)->result_array();
+  }
+
   public function editUser()
   {
     $data = [

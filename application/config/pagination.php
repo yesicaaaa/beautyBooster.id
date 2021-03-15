@@ -1,6 +1,5 @@
 <?php
-//pagination
-$config['base_url'] = 'http://localhost/beautyBooster.id/Master_sub_menu/index/';
+
 
 //pagination styling
 $config['full_tag_open'] = '<nav> <ul class="pagination justify-content-end">';

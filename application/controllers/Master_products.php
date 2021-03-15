@@ -14,20 +14,44 @@ class Master_products extends CI_Controller {
       'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
       'menu'      => $this->db->get('tb_m_menu')->result_array(),
       'subMenu'   => $this->pm->getSubMenu(),
-      'products'  => $this->pm->getProducts(),
-      'product_categories'  => $this->db->get('tb_m_products_categories')->result_array(),
+      'product_categories'  => $this->db->get('menu_categories')->result_array(),
       'product_sub_categories'  => $this->db->get('menu_sub_categories')->result_array(),
       'title'     => 'All Products | beautyBooster.id',
       'css'       => 'assets/css/homeAdmin.css',
       'js'        => ''
     ];
 
-    $this->form_validation->set_rules('category_id', 'Category', 'required');
-    $this->form_validation->set_rules('sub_category_id', 'Sub Category', 'required');
-    $this->form_validation->set_rules('product_name', 'Product Name', 'required');
-    $this->form_validation->set_rules('stock', 'Stock', 'required');
-    $this->form_validation->set_rules('price', 'Price', 'required');
-    $this->form_validation->set_rules('description', 'Description', 'required');
+    if($this->input->post('submit')){
+      $data['keyword'] = $this->input->post('keyword');
+      $this->session->set_userdata('keyword', $data['keyword']);
+    } else {
+      $data['keyword'] = $this->session->userdata('keyword');
+    }
+
+    //pagination
+    $config['base_url'] = 'http://localhost/beautyBooster.id/master_products/index/';
+    $this->db->like('product_name');
+    $this->db->from('tb_m_products');
+    $config['total_rows'] = $this->db->count_all_results();
+    $data['total_rows'] = $config['total_rows'];
+    $config['per_page'] = 5;
+
+    //initialize
+    $this->pagination->initialize($config);
+
+    $data['start'] = $this->uri->segment(3);
+
+    $start = ($data['start'] > 0) ? $data['start'] : 0;
+    $data['products'] = $this->pm->getProducts($config['per_page'], $start, $data['keyword']);
+
+    if(!$this->input->post('submit')){
+      $this->form_validation->set_rules('category_id', 'Category', 'required');
+      $this->form_validation->set_rules('sub_category_id', 'Sub Category', 'required');
+      $this->form_validation->set_rules('product_name', 'Product Name', 'required');
+      $this->form_validation->set_rules('stock', 'Stock', 'required');
+      $this->form_validation->set_rules('price', 'Price', 'required');
+      $this->form_validation->set_rules('description', 'Description', 'required');
+    }
 
     if($this->form_validation->run() == false){
       $this->load->view('Master_templates/header', $data);
@@ -75,19 +99,45 @@ class Master_products extends CI_Controller {
       'menu'      => $this->db->get('tb_m_menu')->result_array(),
       'subMenu'   => $this->pm->getSubMenu(),
       'products'  => $this->pm->getProducts(),
-      'product_categories'  => $this->db->get('tb_m_products_categories')->result_array(),
+      'product_categories'  => $this->db->get('menu_categories')->result_array(),
       'product_sub_categories'  => $this->db->get('menu_sub_categories')->result_array(),
       'title'     => 'All Products | beautyBooster.id',
       'css'       => 'assets/css/homeAdmin.css',
       'js'        => ''
     ];
 
-    $this->form_validation->set_rules('category_id', 'Category', 'required');
-    $this->form_validation->set_rules('sub_category_id', 'Sub Category', 'required');
-    $this->form_validation->set_rules('product_name', 'Product Name', 'required');
-    $this->form_validation->set_rules('stock', 'Stock', 'required');
-    $this->form_validation->set_rules('price', 'Price', 'required');
-    $this->form_validation->set_rules('description', 'Description', 'required');
+    if($this->input->post('submit')){
+      $data['keyword'] = $this->input->post('keyword');
+      $this->session->set_userdata('keyword', $data['keyword']);
+    }else{
+      $data['keyword'] = $this->session->userdata('keyword');
+    }
+
+    //pagination
+    $config['base_url'] = 'http://localhost/beautyBooster.id/master_products/index/';
+    $this->db->like('product_name', $data['keyword']);
+    $this->db->from('tb_m_products');
+    $config['total_rows'] = $this->db->count_all_results();
+    $data['total_rows'] = $config['total_rows'];
+    $config['per_page'] = 5;
+
+    //initialize
+    $this->pagination->initialize($config);
+
+    $data['start'] = $this->uri->segment(3);
+
+    $start = ($data['start'] > 0) ? $data['start'] : 0;
+    $data['products'] = $this->pm->getProducts($config['per_page'], $start, $data['keyword']);
+
+
+    if(!$this->input->post('submit')){
+      $this->form_validation->set_rules('category_id', 'Category', 'required');
+      $this->form_validation->set_rules('sub_category_id', 'Sub Category', 'required');
+      $this->form_validation->set_rules('product_name', 'Product Name', 'required');
+      $this->form_validation->set_rules('stock', 'Stock', 'required');
+      $this->form_validation->set_rules('price', 'Price', 'required');
+      $this->form_validation->set_rules('description', 'Description', 'required');
+    }
 
     if ($this->form_validation->run() == false) {
       $this->load->view('Master_templates/header', $data);
@@ -100,5 +150,11 @@ class Master_products extends CI_Controller {
           role="alert">Product Updated Successfully!</div>');
       redirect('master_products');
     }
+  }
+
+  public function refresh()
+  {
+    $this->session->unset_userdata('keyword');
+    redirect('master_products');
   }
 }
