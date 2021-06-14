@@ -1,14 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Master_products extends CI_Controller {
+class Master_products extends CI_Controller
+{
   public function __construct()
   {
     parent::__construct();
     $this->load->model('Master_products_model', 'pm');
   }
 
-  public function index()  
+  public function index()
   {
     $data = [
       'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
@@ -21,7 +22,7 @@ class Master_products extends CI_Controller {
       'js'        => ''
     ];
 
-    if($this->input->post('submit')){
+    if ($this->input->post('submit')) {
       $data['keyword'] = $this->input->post('keyword');
       $this->session->set_userdata('keyword', $data['keyword']);
     } else {
@@ -44,16 +45,18 @@ class Master_products extends CI_Controller {
     $start = ($data['start'] > 0) ? $data['start'] : 0;
     $data['products'] = $this->pm->getProducts($config['per_page'], $start, $data['keyword']);
 
-    if(!$this->input->post('submit')){
+    if (!$this->input->post('submit')) {
       $this->form_validation->set_rules('category_id', 'Category', 'required');
       $this->form_validation->set_rules('sub_category_id', 'Sub Category', 'required');
+      $this->form_validation->set_rules('image', 'Product Name', 'required');
       $this->form_validation->set_rules('product_name', 'Product Name', 'required');
+      $this->form_validation->set_rules('rating', 'Product Name', 'required');
       $this->form_validation->set_rules('stock', 'Stock', 'required');
       $this->form_validation->set_rules('price', 'Price', 'required');
       $this->form_validation->set_rules('description', 'Description', 'required');
     }
 
-    if($this->form_validation->run() == false){
+    if ($this->form_validation->run() == false) {
       $this->load->view('Master_templates/header', $data);
       $this->load->view('Master_templates/side-navbar', $data);
       $this->load->view('Master_main/products', $data);
@@ -62,7 +65,9 @@ class Master_products extends CI_Controller {
       $data = [
         'category_id'     => htmlspecialchars($this->input->post('category_id')),
         'sub_category_id' => htmlspecialchars($this->input->post('sub_category_id')),
-        'product_name'    => htmlspecialchars($this->input->post('product_name')),
+        'image'           => htmlspecialchars($this->input->post('image')),
+        'product_name'    => htmlspecialchars(strtoupper($this->input->post('product_name'))),
+        'rating'          => htmlspecialchars($this->input->post('rating')),
         'stock'           => htmlspecialchars($this->input->post('stock')),
         'price'           => htmlspecialchars($this->input->post('price')),
         'description'     => htmlspecialchars($this->input->post('description')),
@@ -98,7 +103,6 @@ class Master_products extends CI_Controller {
       'user'      => $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array(),
       'menu'      => $this->db->get('tb_m_menu')->result_array(),
       'subMenu'   => $this->pm->getSubMenu(),
-      'products'  => $this->pm->getProducts(),
       'product_categories'  => $this->db->get('menu_categories')->result_array(),
       'product_sub_categories'  => $this->db->get('menu_sub_categories')->result_array(),
       'title'     => 'All Products | beautyBooster.id',
@@ -106,10 +110,10 @@ class Master_products extends CI_Controller {
       'js'        => ''
     ];
 
-    if($this->input->post('submit')){
+    if ($this->input->post('submit')) {
       $data['keyword'] = $this->input->post('keyword');
       $this->session->set_userdata('keyword', $data['keyword']);
-    }else{
+    } else {
       $data['keyword'] = $this->session->userdata('keyword');
     }
 
@@ -130,10 +134,12 @@ class Master_products extends CI_Controller {
     $data['products'] = $this->pm->getProducts($config['per_page'], $start, $data['keyword']);
 
 
-    if(!$this->input->post('submit')){
+    if (!$this->input->post('submit')) {
       $this->form_validation->set_rules('category_id', 'Category', 'required');
       $this->form_validation->set_rules('sub_category_id', 'Sub Category', 'required');
+      $this->form_validation->set_rules('image', 'Product Name', 'required');
       $this->form_validation->set_rules('product_name', 'Product Name', 'required');
+      $this->form_validation->set_rules('rating', 'Product Name', 'required');
       $this->form_validation->set_rules('stock', 'Stock', 'required');
       $this->form_validation->set_rules('price', 'Price', 'required');
       $this->form_validation->set_rules('description', 'Description', 'required');

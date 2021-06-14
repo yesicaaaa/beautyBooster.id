@@ -1,7 +1,8 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Signup extends CI_Controller {
+class Signup extends CI_Controller
+{
   public function index()
   {
     $this->form_validation->set_rules('name', 'Fullname', 'required|trim');
@@ -9,15 +10,15 @@ class Signup extends CI_Controller {
     $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[6]|matches[password2]');
     $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
-    if($this->form_validation->run() == false){
+    if ($this->form_validation->run() == false) {
       $data = [
         'title'   => 'Sign Up | beautyBooster.id',
         'css'     => 'assets/css/signup.css'
       ];
       $this->load->view('templates/header', $data);
       $this->load->view('users/signup');
-      $this->load->view('templates/footer');    
-    }else{
+      $this->load->view('templates/footer');
+    } else {
       $email = $this->input->post('email', true);
       $data = [
         'name'          => htmlentities($this->input->post('name', true)),
@@ -50,11 +51,11 @@ class Signup extends CI_Controller {
   private function _sendEmail($token, $type)
   {
     $config = [
-      'protocol'  => 'smtp',
+      'protocol'  => 'smtp', //simple mail transfer protocol
       'smtp_host' => 'ssl://smtp.googlemail.com',
       'smtp_user' => 'dalhaneul.s@gmail.com',
       'smtp_pass' => 'seo555554444',
-      'smtp_port' => 465,
+      'smtp_port' => 465, //port smtp google
       'mailtype'  => 'html',
       'charset'   => 'utf-8',
       'newline'   => "\r\n"
@@ -65,15 +66,15 @@ class Signup extends CI_Controller {
     $this->email->from('dalhaneul.s@gmail.com', '달하늘 서');
     $this->email->to($this->input->post('email'));
 
-    if($type == 'verify'){
+    if ($type == 'verify') {
       $this->email->subject('Account Verification');
       $this->email->message('Click this link to verify your account : <a href="' . base_url() . 'signup/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Activate</a>');
-    } else if($type == 'forgot') {
+    } else if ($type == 'forgot') {
       $this->email->subject('Reset Password');
       $this->email->message('Click this link to reset your password : <a href="' . base_url() . 'signup/resetPassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . '">Reset Password</a>');
     }
 
-    if($this->email->send()) {
+    if ($this->email->send()) {
       return true;
     } else {
       echo $this->email->print_debugger();
@@ -88,11 +89,11 @@ class Signup extends CI_Controller {
 
     $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-    if($user){
+    if ($user) {
       $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
 
-      if($user_token){
-        if(time() - $user_token['date_created'] < (60*60*24)){
+      if ($user_token) {
+        if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
           $this->db->set('is_active', 1);
           $this->db->where('email', $email);
           $this->db->update('user');
@@ -101,14 +102,14 @@ class Signup extends CI_Controller {
 
           $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">' . $email . ' has been activated! Please login.</div>');
           redirect('signin');
-        }else{
+        } else {
           $this->db->delete('user', ['email' => $email]);
           $this->db->delete('user_token', ['email' => $email]);
 
           $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Token expired!</div>');
           redirect('signin');
         }
-      }else{
+      } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Account activation failed! Token invalid!</div>');
         redirect('signin');
       }
@@ -138,7 +139,7 @@ class Signup extends CI_Controller {
       if ($user) {
         $token = base64_encode(random_bytes(32));
         $user_token = [
-          'email'         => $this->input->post('email'),
+          'email'         => $email,
           'token'         => $token,
           'date_created'  => time()
         ];
@@ -162,9 +163,9 @@ class Signup extends CI_Controller {
 
     $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-    if($user){
+    if ($user) {
       $user_token = $this->db->get_where('user_token', ['token' => $token])->row_array();
-      if($user_token){
+      if ($user_token) {
         if (time() - $user_token['date_created'] < (60 * 60 * 24)) {
           $this->session->set_userdata('reset_email', $email);
           $this->changePassword();
@@ -175,11 +176,11 @@ class Signup extends CI_Controller {
           $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset Password failed! Token expired!</div>');
           redirect('signin');
         }
-      }else{
+      } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password failed! Wrong token.</div>');
         redirect('signin');
       }
-    }else{
+    } else {
       $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Reset password failed! Wrong email.</div>');
       redirect('signin');
     }
@@ -187,10 +188,10 @@ class Signup extends CI_Controller {
 
   public function changePassword()
   {
-    if(!$this->session->userdata('reset_email')){
+    if (!$this->session->userdata('reset_email')) {
       redirect('signin');
     }
-    
+
     $data = [
       'title'   => 'Change Password | beautyBooster.id',
       'css'     => 'assets/css/signin.css'
@@ -199,11 +200,11 @@ class Signup extends CI_Controller {
     $this->form_validation->set_rules('password1', 'Password', 'trim|required|min_length[6]|matches[password2]');
     $this->form_validation->set_rules('password2', 'Confirm Password', 'trim|required|matches[password1]');
 
-    if($this->form_validation->run() == false){
+    if ($this->form_validation->run() == false) {
       $this->load->view('templates/header', $data);
       $this->load->view('users/change_password', $data);
       $this->load->view('templates/footer');
-    }else{
+    } else {
       $password = password_hash($this->input->post('password1'), PASSWORD_DEFAULT);
       $email = $this->session->userdata('reset_email');
 

@@ -19,7 +19,9 @@
     <div style="width: 79%;">
       <?= form_error('category_id', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('sub_category', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+      <?= form_error('image', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('product_name', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
+      <?= form_error('rating', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('stock', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('price', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
       <?= form_error('description', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
@@ -32,7 +34,9 @@
             <th scope="col">#</th>
             <th scope="col">Category</th>
             <th scope="col">Sub Category</th>
+            <th scope="col">Product Image</th>
             <th scope="col">Product Name</th>
+            <th scope="col">Rating</th>
             <th scope="col">Stock</th>
             <th scope="col">Price</th>
             <th scope="col">Description</th>
@@ -53,7 +57,9 @@
             <tr>
               <th scope="row"><?= ++$start; ?></th>
               <td><?= $pr['category']; ?></td>
+              <td><?= $pr['image']; ?></td>
               <td><?= $pr['title']; ?></td>
+              <td><?= $pr['rating']; ?></td>
               <td><?= $pr['product_name']; ?></td>
               <td><?= $pr['stock']; ?></td>
               <td><?= $pr['price']; ?></td>
@@ -100,7 +106,13 @@
             </select>
           </div>
           <div class="form-group">
+            <input type="text" class="form-control" id="image" name="image" placeholder="Product Image">
+          </div>
+          <div class="form-group">
             <input type="text" class="form-control" id="product_name" name="product_name" placeholder="Product Name">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" id="rating" name="rating" placeholder="Rating">
           </div>
           <div class="form-group">
             <input type="number" class="form-control" id="stock" name="stock" placeholder="Stock">
@@ -176,7 +188,7 @@
 <script>
   var BASE_URL = '<?= base_url(); ?>'
 
-  function getData(id){
+  function getData(id) {
     $.ajax({
       type: 'POST',
       dataType: 'json',
@@ -184,15 +196,15 @@
       data: {
         id: id
       },
-      success: function(data){
+      success: function(data) {
         $('#idEdit').val(data.id),
-        $('#categoryEdit').val(data.category_id),
-        $('#sub_categoryEdit').val(data.sub_category_id),
-        $('#product_nameEdit').val(data.product_name),
-        $('#stockEdit').val(data.stock),
-        $('#priceEdit').val(data.price),
-        $('#descriptionEdit').val(data.description),
-        $('#newEditProductModal').modal()
+          $('#categoryEdit').val(data.category_id),
+          $('#sub_categoryEdit').val(data.sub_category_id),
+          $('#product_nameEdit').val(data.product_name),
+          $('#stockEdit').val(data.stock),
+          $('#priceEdit').val(data.price),
+          $('#descriptionEdit').val(data.description),
+          $('#newEditProductModal').modal()
       }
     });
   }

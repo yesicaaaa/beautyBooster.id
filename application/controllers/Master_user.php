@@ -127,16 +127,16 @@ class Master_user extends CI_Controller
       'js'        => ''
     ];
 
-    if($this->input->post('submit')){
+    if ($this->input->post('submit')) {
       $data['keyword'] = $this->input->post('keyword');
       $this->session->set_userdata('keyword', $data['keyword']);
-    }else{
+    } else {
       $data['keyword'] = $this->session->userdata('keyword');
     }
 
     //pagination
     $config['base_url'] = 'http://localhost/beautyBooster.id/master_user/usersShow/';
-    $this->db->like('name',$data['keyword']);
+    $this->db->like('name', $data['keyword']);
     $this->db->from('user');
     $config['total_rows'] = $this->db->count_all_results();
     $data['total_rows'] = $config['total_rows'];

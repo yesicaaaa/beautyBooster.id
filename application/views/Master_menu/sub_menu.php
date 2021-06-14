@@ -38,7 +38,7 @@
         <tbody>
           <?php if (empty($subMenu)) : ?>
             <tr>
-              <td colspan="6">
+              <td colspan="3">
                 <div class="alert alert-danger" role="alert">
                   Data not found!
                 </div>

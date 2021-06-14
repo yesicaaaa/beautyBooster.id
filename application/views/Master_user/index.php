@@ -7,7 +7,7 @@
   <?= form_error('new_password1', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
   <?= form_error('new_password2', '<div class="alert alert-danger" role="alert">', '</div>'); ?>
   <?= $this->session->flashdata('message'); ?>
-  <div class="card mb-3" style="max-width: 540px;">
+  <!-- <div class="card mb-3" style="max-width: 540px;">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="card-img" alt="...">
@@ -22,6 +22,18 @@
         </div>
       </div>
     </div>
+  </div> -->
+  <div class="text-center">
+    <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="profile-img">
+  </div>
+  <div class="user-info">
+    <h6>Fullname</h6>
+    <p><?= $user['name'] ?></p>
+    <h6>Email</h6>
+    <p><?= $user['email'] ?></p>
+    <p><a href="javascript:getData(<?= $user['id'] ?>)" class="badge badge-edit">Edit</a>
+      <a href="" data-toggle="modal" data-target="#newChangePasswordModal" class="badge badge-delete">Change Password</a>
+    </p>
   </div>
 </div>
 
@@ -36,7 +48,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('master_user/editUser'); ?>" method="POST" enctype="multipart/form-data">
+      <form action="<?= base_url('master_user/editUser'); ?>" method="POST">
         <div class="modal-body">
           <input type="hidden" id="idEdit" name="id">
           <div class="form-group">
@@ -46,7 +58,7 @@
             <input type="text" class="form-control" id="emailEdit" name="email">
           </div>
           <div class="form-group">
-            <input type="file" class="form-control" id="imageEdit" name="image">
+            <input type="text" class="form-control" id="imageEdit" name="image">
           </div>
         </div>
         <div class="modal-footer">
