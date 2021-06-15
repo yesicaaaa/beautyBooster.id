@@ -7,6 +7,7 @@ class Master_menu extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Master_menu_model', 'mm');
+    is_logged_in_admin();
   }
   public function index()
   {

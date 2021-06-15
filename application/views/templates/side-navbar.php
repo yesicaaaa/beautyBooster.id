@@ -15,9 +15,9 @@
         <div class=""></div>
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-        <a class="dropdown-item fa fa-fw fa-user" href="<?= base_url(); ?>master_user"><span class="item-desc"> My Profile</span></a>
+        <a class="dropdown-item fa fa-fw fa-user" href="<?= base_url(); ?>main/profile"><span class="item-desc"> My Profile</span></a>
         <div class="user-divider"></div>
-        <a class="dropdown-item fa fa-fw fa-caret-right" href="<?= base_url(); ?>master_user/signout"><span class="item-desc">Sign Out</span></a>
+        <a class="dropdown-item fa fa-fw fa-caret-right" href="<?= base_url(); ?>main/signout"><span class="item-desc">Sign Out</span></a>
       </div>
     </div>
 </nav>

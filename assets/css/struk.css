@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&family=Poppins&display=swap');
+
+body {
+  background-image: url('../img/bgHome.jpg');
+  background-size: cover;
+}
+
+.container-struk {
+  background-color: white;
+  border-radius: 5px;
+  width: 40%;
+  margin: 13% 30% 0 30%;
+  padding-bottom: 30px;
+}
+
+.container-struk h1 {
+  font-family: 'Caveat', cursive;
+  text-align: center;
+  color: #8a4c46;
+  font-weight: bold;
+}
+
+.container-struk h6 {
+  font-family: 'Poppins', sans-serif;
+  color: #8a4c46;
+  text-align: center;
+}
+
+.divider-struk {
+  border-bottom: 2px solid #8a4c46;
+  width: 20%;
+  margin: 0 215px;
+}
+
+.container-struk h5 {
+  margin: 20px 0 -10px 40px;
+  color: #353130;
+}
+
+.bg-struk a {
+  margin-left: 30%;
+}

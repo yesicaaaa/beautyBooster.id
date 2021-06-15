@@ -7,6 +7,7 @@ class Master_user extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Master_user_model', 'um');
+    is_logged_in_admin();
   }
 
   public function index()

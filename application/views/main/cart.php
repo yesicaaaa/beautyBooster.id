@@ -1,9 +1,9 @@
 <div class="main">
   <?php foreach($cart as $c) : ?>
   <div class="row mt-3 cart-items">
-    <div class="col-sm-1 border-check">
+    <!-- <div class="col-sm-1 border-check">
       <i class="fa fa-fw fa-circle"></i>
-    </div>
+    </div> -->
     <div class="col-md-1 border-img">
       <img class="img-cart" src="<?= base_url('assets/img/products/') . $c['image'] ?>" alt="product_image">
     </div>
@@ -16,7 +16,7 @@
       <h5><?= $c['qty'] ?></h5>
     </div>
     <div class="col-md-1 border-delete">
-      <a href=""><i class="fa fa-fw fa-minus-circle"></i> Delete</a>
+      <a href="<?= base_url('main/delete_cart/') . $c['rowid'] ?>"><i class="fa fa-fw fa-minus-circle"></i> Delete</a>
     </div>
   </div>
   <div class="row footer">
@@ -27,7 +27,7 @@
       <h5><?= $this->cart->total_items(); ?> Items</h5>
     </div>
     <div class="col-md-3 border-footer3">
-      <a href="">Checkout</a>
+      <a href="<?= base_url('main/checkout') ?>">Checkout</a>
     </div>
   </div>
   <?php endforeach; ?>

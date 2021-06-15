@@ -1,7 +1,7 @@
 <!-- Navbar -->
 <nav class="navbar sticky-top bg-nav">
   <a class="navbar-brand">beautyBooster.id</a>
-  <img src="<?= base_url('assets/img/') . $user['image']; ?>" class="img-circle">
+  <img src="<?= base_url('assets/img/user_profile/') . $user['image']; ?>" class="img-circle">
   <!-- <span><?= $user['name']; ?></span> -->
   <!-- <div class="fa fa-caret-down dropdown"></div> -->
   <div class="dropdown">
